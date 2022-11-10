@@ -110,7 +110,7 @@ Is your platform based on a local installation or a cloud? Do you plan to use a 
 
 https://photos.app.goo.gl/ArGd5DNedDc5cGzP9
 
-![IoT circuits](https://photos.app.goo.gl/ArGd5DNedDc5cGzP9)
+![IoT circuits](https://drive.google.com/file/d/15xsqvPa2abf9W_N06ANf9Ovux_Pbz29J/view?usp=share_link)
 
 ### The code
 

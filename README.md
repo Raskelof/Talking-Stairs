@@ -64,6 +64,24 @@ Explain all material that is needed. All sensors, where you bought them and thei
 
 ### Environment setup
 
+This project was programmed in MicroPython and to get you started you will need to setup the enviroment.
+
+1. Install drivers
+
+ + Connect the Heltec board to your computer using a USB to micro USB cable
+ + Download drivers and install preferd version from https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip
+
+2. Flash the firmware with PyCom MicroPython
+
+ + Download the firmware for Heltec Boards from https://github.com/H-Ryan/Heltec/blob/main/PyCom%20MicroPython/Heltec%20PyCom%20MicroPython.zip?raw=true
+ + Open a browser and head over to https://espressif.github.io/esptool-js/ and click "Connect"
+ + Update the "Flash address" to "0x0000" instead of "0x1000"
+ + Click "Program". This will start the flashing process.
+
+3. Install IDE on computer
+
+ + For this project I ended up using Thonny for development which is lightweight IDE for micro controllers but I would suggest you try using either VS Code or Atom with the PyMakr plugin installed. I had some stability issues uploading new code when I used VS Code with PyMakr but it's definitly a more modern setup. You can download Thonny from here: https://thonny.org/
+
 How is the device programmed. Which IDE are you using. Describe all steps from flashing the firmware, installing plugins in your favorite editor. How flashing is done on MicroPython. The aim is that someone should be able to understand how to reproduce your project.
 
 - [ ] Chosen IDE

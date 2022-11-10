@@ -91,12 +91,19 @@ This project was programmed in MicroPython and to get you started you will need 
 
 ### Putting everything together
 
-How is all the electronics connected? Describe all the wiring, good if you can show a circuit diagram. Be specific on how to connect everything, and what to think of in terms of resistors, current and voltage. Is this only for a development setup or could it be used in production?
+To get the physical setup in place when need to connect our vibration sensor and LoRa antenna. To make things a litle bit easier I used a breadboard to connect the circuits. 
 
-- [ ] Circuit diagram (can be hand drawn) (Fritzing, Tinkercad, etc.)
-- [ ] Electrical calculations
-- [ ] Limitations of hardware depending on design choices.
-- [ ] Discussion about a way forward - is it possible to scale?
+Steps
+
+##### 1. Discount any power supply (computer or battery)
+##### 2. Connect LoRa antenna
+##### 3. Conntect vibration sensor
++ Connect one wire from **5V** on the board to pin **VCC** on the sensor 
++ Connect one wire from **GND** on the board to pin **GND** o the sensor
++ Connect one wire from **PIN10** on the board to pin **DO** (digital output)
+##### 4. As power supply I used a power bank with **5V DC** connected with USB
+
+![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/sketch_circuits.png?raw=true)
 
 ### Platforms and infrastructure
 
@@ -108,9 +115,6 @@ Is your platform based on a local installation or a cloud? Do you plan to use a 
 - [ ] Explain and elaborate what made you choose this platform
 - [ ] Provide a pricing discussion. What are the prices for different platforms, and what are the pros and cons of using a low-code platform vs. developing yourself?
 
-https://photos.app.goo.gl/ArGd5DNedDc5cGzP9
-
-![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/sketch_circuits.png?raw=true)
 
 ### The code
 

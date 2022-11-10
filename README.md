@@ -8,56 +8,16 @@
 
 [TOC]
 
-## How to write your report
 
-We have chosen to streamline your assignment as a tutorial, written in the Markdown language using a standard template (below). The main reason behind this is to make it as simple as possible, still flexible and easy to share between all classmates and other peers.
-
-The report should be available on a public Github repository.
-
-```
-Information want's to be free - let's keep everything open, shall we?
-```
-
-## Github
-
-Publish your project directly to Github. In that case write your tutorial in the `README.md` file. If you have no prior experience with Github this is a very good first time to learn. Easiest is to use the Github Desktop application, or you can also do everything from the web browser (editing and uploading etc.). Also, there are Git-plugins for VSCode and Atom which also makes things very easy.
-
-Make sure you create a public repository and also that you write the report in the `README.md` file.
-
-![](https://i.imgur.com/mp596wk.png)
-![](https://i.imgur.com/DwkCnGE.png)
-
-
-## Some examples for inspiration
-
-**Note these are from the basic courses.**
-
-Check out this link: [Good examples from previous summer courses](https://hackmd.io/@lnu-iot/good-examples)
-
-----
-
-Some additional examples for inspiration.
-
-- [GPS Car tracker with notification](https://www.instructables.com/id/GPS-Car-Tracker-With-SMS-Notification-and-Thingspe/)
-- [Blynk style button](https://www.instructables.com/id/Arduino-Tutorial-BLYNK-Style-Button-and-ESP-01-Rel/)
-- [IoT weather station](https://www.hackster.io/rijk_meurs/iot-weather-station-4c29c6)
-- [Mini IoT weather station](https://www.hackster.io/FunguyPro/how-to-make-an-mini-iot-weather-station-58252d)
-- [Distance sensor](https://community.mydevices.com/t/nodemcu-esp8266-hc-sr04/2872)
-
----
-
-# Template
-
-**Please keep the total length of the report below 40k characters.** You can include code that is linked to a repository. Keep the code snippets in the report short, and rather link to relevant sections in the repository. The code snippets should only be relevant for explaining on a higher level.
-
-## Tutorial on how to detect vibrations from stairways and trigger notifications
+## Tutorial on how to detect vibrations from stairways and trigger notifications over LoRa/WiFi
 
 Author: Rikard Askelöf
 
-This turtorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway, but the use case could be anything where you have a need to detect vibrations.
+This turtorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations.
 
-Depending on your enviroment and personal requirements, the setup process takes 10 - 30h.
+Depending on your enviroment and personal requirements, the setup process takes 10 - 30h. 
 
+<!---
 Give a short and brief overview of what your project is about.
 What needs to be included:
 
@@ -65,14 +25,21 @@ What needs to be included:
 - [ ] Your name and student credentials (xx666xxx)
 - [ ] Short project overview
 - [ ] How much time it might take to do (an approximation)
+-->
 
 ### Objectives
 
+The purpose of the project is to detect a person walking down stairways and send a notification over WiFi/LoRa. In my specific case I used that notification to play an audio message to the person walking down to greet them with a voice saying e.g. "Good morning" or "Hello".
+
+Comming from a developer backround in system/web/app development my main goal of this project was to learn more about IoT development and specifically using communication protocols like LoRa. 
+
+<!--
 Describe why you have chosen to build this specific device. What purpose does it serve? What do you want to do with the data, and what new insights do you think it will give?
 
 - [ ] Why you chose the project
 - [ ] What purpose does it serve
 - [ ] What insights you think it will give
+-->
 
 ### Material
 

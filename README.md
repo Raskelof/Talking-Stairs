@@ -13,9 +13,9 @@
 
 Author: Rikard Askelöf
 
-This turtorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations.
+This turtorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.
 
-Depending on your enviroment and personal requirements, the setup process takes 10 - 30h. 
+Depending on your enviroment, use case and experience the setup process takes 10 - 30h. 
 
 <!---
 Give a short and brief overview of what your project is about.
@@ -69,7 +69,7 @@ This project was programmed in MicroPython and to get you started you will need 
 ##### 1. Install drivers
 
  + Connect the Heltec board to your computer using a USB to micro USB cable
- + Download drivers and install preferd version from https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip
+ + Download drivers and install preferred version from https://www.silabs.com/documents/public/software/CP210x_Windows_Drivers.zip
 
 ##### 2. Flash the firmware with PyCom MicroPython
 
@@ -93,9 +93,9 @@ This project was programmed in MicroPython and to get you started you will need 
 
 To get the physical setup in place when need to connect our vibration sensor and LoRa antenna. To make things a litle bit easier I used a breadboard to connect the circuits. 
 
-Steps
+#### Steps
 
-##### 1. Discount any power supply (computer or battery)
+##### 1. Disconnect any power supply (computer or battery)
 ##### 2. Connect LoRa antenna
 ##### 3. Conntect vibration sensor
 + Connect one wire from **5V** on the board to pin **VCC** on the sensor 
@@ -106,6 +106,13 @@ Steps
 ![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/sketch_circuits.png?raw=true)
 
 ### Platforms and infrastructure
+
+#### Supporting both WiFi and LoRA
+My first plan was to use LoRa as the sole wireless protocol to send notifications. As it tuned out the signaling between my home and public TTN gatways or Helium gateways was too unreliable so I ended up adding a configurable fallback to WiFi aswell. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everyhings connects well.
+
+
+
+
 
 Describe your choice of platform(s). You need to describe how the IoT-platform works, and also the reasoning and motivation about your choices. Have you developed your own platform, or used 
 

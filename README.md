@@ -77,24 +77,17 @@ This project was programmed in MicroPython and to get you started you will need 
  + Open a browser and head over to https://espressif.github.io/esptool-js/ and click "Connect"
  + Update the "Flash address" to "0x0000" instead of "0x1000"
  + Click "Program". This will start the flashing process.
- + Close down this tab/page
+ + Close down this tab/page when finished.
 
 ##### 3. Install IDE on computer
 
  + For this project I ended up using Thonny for development which is lightweight IDE for micro controllers but I would suggest you try using either VS Code or Atom with the PyMakr plugin installed. I had some stability issues uploading new code when I used VS Code with PyMakr but it's definitly a more modern setup. You can download Thonny from here: https://thonny.org/
 
- 4. Verify your installation
+##### 4. Verify your installation
 
  + Open Thonny and hit the stop/restart button. You should se the following statement when the device boots up 
  > Pycom MicroPython 1.20.2.r4 [v1.20.1.r2-392-g172cf5d0-dirty] on 2021-01-19; Heltec Wireless Stick with ESP32
 
-
-How is the device programmed. Which IDE are you using. Describe all steps from flashing the firmware, installing plugins in your favorite editor. How flashing is done on MicroPython. The aim is that someone should be able to understand how to reproduce your project.
-
-- [ ] Chosen IDE
-- [ ] How the code is uploaded
-- [ ] How is your project structured (important)
-- [ ] Steps that you needed to do for your computer. Installation of Node.js, extra drivers, etc.
 
 ### Putting everything together
 
@@ -114,6 +107,10 @@ Is your platform based on a local installation or a cloud? Do you plan to use a 
 - [ ] Describe platform in terms of functionality
 - [ ] Explain and elaborate what made you choose this platform
 - [ ] Provide a pricing discussion. What are the prices for different platforms, and what are the pros and cons of using a low-code platform vs. developing yourself?
+
+https://photos.app.goo.gl/ArGd5DNedDc5cGzP9
+
+![IoT circuits](https://photos.app.goo.gl/ArGd5DNedDc5cGzP9)
 
 ### The code
 

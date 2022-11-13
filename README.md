@@ -95,7 +95,7 @@ To get the physical setup in place when need to connect our vibration sensor and
 
 ##### 1. Disconnect any power supply (computer or battery)
 ##### 2. Connect LoRa antenna
-##### 3. Conntect vibration sensor
+##### 3. Connect vibration sensor
 + Connect one wire from **5V** on the board to pin **VCC** on the sensor 
 + Connect one wire from **GND** on the board to pin **GND** o the sensor
 + Connect one wire from **PIN10** on the board to pin **DO** (digital output)
@@ -106,9 +106,12 @@ To get the physical setup in place when need to connect our vibration sensor and
 ### Platforms and infrastructure
 
 #### Supporting both WiFi and LoRA
-My first plan was to use LoRa as the sole wireless protocol to send notifications. As it tuned out the signaling between my home and public TTN gatways or Helium gateways was too unreliable so I ended up adding a configurable fallback to WiFi aswell. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everyhings connects well.
+My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signaling between my home and public TTN gatways or Helium gateways was too unreliable so I ended up adding a configurable fallback to WiFi aswell. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everyhings connects well.
+
+The choice of using LoRa as an optinional communication method was simply based on my interest of learning more about this protocol. For my use case (installation indoors) it's not a very reliable and I would recommend using WiFi instead if it's feasible. WiFI would also be without latency if you have the requirement to get the notifications in real time or close to real time. 
 
 
+![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/IoT-stairs_connectivity.png?raw=true)
 
 
 

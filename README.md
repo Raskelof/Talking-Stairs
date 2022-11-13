@@ -124,7 +124,7 @@ To configure WiFi or LoRa you need to set the following variable in the `config.
 
 ##### Setting up communication using WiFi
 
-Besides configuring the corrrect SSD and password you also need to provide the endpoint to which all notifications will be sent using HTTP GET.
+Besides configuring the corrrect SSD and password you also need to provide the endpoint URL to which all notifications will be sent using HTTP GET.
 
 ```js
 "notification_endpoint": "http://mydomain.com/myendpoint"
@@ -144,35 +144,24 @@ When you have your device setup in Helium you also need provide the following co
 "app_key": "x"
 ```
 
-If everything is correctly configured you should now see the message "LoRa OK" after boot up and if you get a link to a Helium gateway.
+If everything is correctly configured you should now see the message "LoRa OK" after boot up and after a successfull join to a Helium gateway.
 
 As a last step you need to set up a new integration in the Helium console. Add a new "HTTP" integration and specifiy the "Endpoint URL". Next go to the "Flows" section and create link between your device and the HTTP integration you just created.
 
 ##### Web server, database and local application
 
-.NET and c# is my preferred choice of language so it was natural to setup the infrastructure around the device using .NET. The code and setup is very simple though so I would suggest you use whatever language you feel comfortable in. The following describes the purpose and logics in each application.
+.NET and c# is my preferred choice of language so it was natural to setup the infrastructure around the device using .NET. The code and setup is very simple though so I would suggest you use whatever language you feel comfortable with. The following describes the purpose and logics in each application.
 
-
-> Example:
 >| Application / service | Hosting | Description |
 >| --------------------- | ------- | ----------- |
 >| Web server | Azure              | Web server hosted using Azure Web Apps. Contains one endpoint that logs any requests in the datasbase |
 >| MSSQL Database | Azure          | One table with columns for primary id, createdOn and data
->| .NET Console application | Local windows computer | On console aplication polling the database for new log rows (vibrations) and plats a sound using Microsoft.Speech |
+>| .NET Console application | Local windows computer | One console aplication polling the database for new log rows (vibrations) and plays a sound using Microsoft.Speech |
 >
 
 #### Cost
 
-The cost for using Helium could be free or at least very low depending on your usage. $0.0002 per day if you use one uplink ever hours during the day.
-
-
-Describe your choice of platform(s). You need to describe how the IoT-platform works, and also the reasoning and motivation about your choices. Have you developed your own platform, or used 
-
-Is your platform based on a local installation or a cloud? Do you plan to use a paid subscription or a free? Describe the different alternatives on going forward if you want to scale your idea.
-
-- [ ] Describe platform in terms of functionality
-- [ ] Explain and elaborate what made you choose this platform
-- [ ] Provide a pricing discussion. What are the prices for different platforms, and what are the pros and cons of using a low-code platform vs. developing yourself?
+The cost for using Helium could be free or at least very low depending on your usage. $0.0002 per day if you use one uplink ever hours during the day. The hosting on Azure could more costly, while the web app is free if you go for the "Dev web app" the database has minimum price of 128 kr / month that woyld be sufficient for our requirement. I would recommend to facilitate any existing database and infrastructure you might have at hand because the requirements are very low as we are only using one table with limited reads and writes.
 
 
 ### The code
@@ -181,14 +170,57 @@ Import core functions of your code here, and don't forget to explain what you ha
 
 
 ```python=
-import this as that
+from network import WLAN
+import machine
+import ssd1306
+import time
+import socket
+from machine import I2C, Pin
+from screen import Screen
+from vibration_detection import VibrationDetection
+from lora_sender import LoRaSender
+from wifi_sender import WiFiSender
+from settings import Settings
 
-def my_cool_function():
-    print('not much here')
+print("####### init main.py #######")
 
-s.send(package)
+config = Settings()
 
-# Explain your code!
+s = Screen()
+s.clear()
+
+if(config.use_wifi):
+    s.display('Init Wifi')
+    wifiSender = WiFiSender(config.wifiSSID, config.wifiPassword, config.notification_endpoint)
+    s.display('Wifi OK')
+else:
+    s.display('Init LoRa')
+    loraSender = LoRaSender()
+    s.display('LoRa OK')
+
+def on_pin_read_OK():
+    s.clear();
+    s.display('Pin OK')
+
+def on_vibration_detected(ms_since_last_vibration):
+    print('Yes sir')
+    print(ms_since_last_vibration)
+    
+    sequence_time_ms = 2000
+    if(ms_since_last_vibration > sequence_time_ms):
+        
+        s.clear()
+        s.display(str(ms_since_last_vibration))
+
+        if(config.use_wifi):
+            wifiSender.send()
+        else:
+            loraSender.send('1')
+
+
+vib = VibrationDetection()
+vib.listen(on_vibration_detected, on_pin_read_OK)
+
 ```
 
 ### The physical network layer

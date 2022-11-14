@@ -105,63 +105,13 @@ To get the physical setup in place when need to connect our vibration sensor and
 
 ### Platforms and infrastructure
 
-#### Supporting both WiFi and LoRA
-My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signaling between my home and public TTN gatways and Helium gateways was too unreliable so I ended up adding a configurable fallback to use WiFi instead. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everyhings connects well.
+As the device supports wireless communication using both WiFi and LoRA the infrastructure to forward the vibration signals is built with **Azure Cloud PLatform** and **Helium**. If you plan to use WiFi you can simply skip the Helium part. 
 
-The choice of using LoRa as an optinional communication method was simply based on my interest of learning more about this protocol. For my use case (installation indoors) it's not very reliable and I would recommend using WiFi instead if it's feasible. WiFI would also be without latency if you have the requirement to get the notifications in real time or close to real time. On the other hand if your enviroment is outdoors with good connectivity LoRa could be the preferred choice.
-
-
-![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/IoT-stairs_connectivity.png?raw=true)
-
-
-The picture above descibes how detected vibrations are sent out from the device, gets logged in the database and finally geeting pulled from a local application to play an audio message. No matter if you choose WiFi or LoRa, the message sent will go through the same HTTP endpoint.
-
-To configure WiFi or LoRa you need to set the following variable in the `config.json`
-
-```js
-"useWiFi": true
-```
-
-##### Setting up communication using WiFi
-
-Besides configuring the corrrect SSD and password you also need to provide the endpoint URL to which all notifications will be sent using HTTP GET.
-
-```js
-"notification_endpoint": "http://mydomain.com/myendpoint"
-```
-
-##### Setting up communication using LoRa with Helium
-
-To set the device up using LoRa and Helium follow the steps found in this guide
-
-https://hackmd.io/@lnu-iot/HJUu_sIO9
-
-When you have your device setup in Helium you also need provide the following configuration in the `config.json` file.
-
-```js
-"dev_eui": "x",
-"app_eui": "x",
-"app_key": "x"
-```
-
-If everything is correctly configured you should now see the message "LoRa OK" after boot up and after a successfull join to a Helium gateway.
-
-As a last step you need to set up a new integration in the Helium console. Add a new "HTTP" integration and specifiy the "Endpoint URL". Next go to the "Flows" section and create link between your device and the HTTP integration you just created.
-
-##### Web server, database and local application
-
-.NET and c# is my preferred choice of language so it was natural to setup the infrastructure around the device using .NET. The code and setup is very simple though so I would suggest you use whatever language you feel comfortable with. The following describes the purpose and logics in each application.
-
->| Application / service | Hosting | Description |
->| --------------------- | ------- | ----------- |
->| Web server | Azure              | Web server hosted using Azure Web Apps. Contains one endpoint that logs any requests in the datasbase |
->| MSSQL Database | Azure          | One table with columns for primary id, createdOn and data
->| .NET Console application | Local windows computer | One console aplication polling the database for new log rows (vibrations) and plays a sound using Microsoft.Speech |
->
+Read more about the platform setup under "The physical network layer".
 
 #### Cost
 
-The cost for using Helium could be free or at least very low depending on your usage. $0.0002 per day if you use one uplink ever hours during the day. The hosting on Azure could more costly, while the web app is free if you go for the "Dev web app" the database has minimum price of 128 kr / month that woyld be sufficient for our requirement. I would recommend to facilitate any existing database and infrastructure you might have at hand because the requirements are very low as we are only using one table with limited reads and writes.
+The cost for using Helium could be free or at least very low depending on your usage. $0.0002 per day if you use one uplink every hour during the day. The hosting on Azure could more costly, while the web app is free if you go for the "Dev web app" the database has minimum price of 128 kr / month that would be sufficient for our requirements. I would recommend to facilitate any existing database and infrastructure you might have at hand because the requirements are very low as we are only using one table with limited reads and writes. Using the Azure trial / free tier would also give you 1 year of free services.
 
 
 ### The code
@@ -170,12 +120,6 @@ Import core functions of your code here, and don't forget to explain what you ha
 
 
 ```python=
-from network import WLAN
-import machine
-import ssd1306
-import time
-import socket
-from machine import I2C, Pin
 from screen import Screen
 from vibration_detection import VibrationDetection
 from lora_sender import LoRaSender
@@ -225,6 +169,51 @@ vib.listen(on_vibration_detected, on_pin_read_OK)
 
 ### The physical network layer
 
+
+#### Supporting both WiFi and LoRA
+My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signaling between my home and public TTN gatways and Helium gateways was too unreliable so I ended up adding a configurable fallback to use WiFi instead. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everyhings connects well.
+
+The choice of using LoRa as an optional communication method was simply based on my interest of learning more about this protocol. For my use case (installation indoors) it's not very reliable and I would recommend using WiFi instead if it's feasible. WiFI would also be without latency if you have the requirement to get the notifications in real time or close to real time. On the other hand if your enviroment is outdoors with good connectivity LoRa could be the preferred choice.
+
+
+![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/IoT-stairs_connectivity.png?raw=true)
+
+
+The picture above descibes how detected vibrations are sent out from the device, gets logged in the database and finally geeting pulled from a local application to play an audio message. No matter if you choose WiFi or LoRa, the message sent will go through the same HTTP endpoint.
+
+To configure WiFi or LoRa you need to set the following variable in the `config.json`
+
+```js
+"useWiFi": true
+```
+
+##### Setting up communication using WiFi
+
+Besides configuring the corrrect SSD and password you also need to provide the endpoint URL to which all notifications will be sent using HTTP GET.
+
+```js
+"notification_endpoint": "http://mydomain.com/myendpoint"
+```
+
+##### Setting up communication using LoRa with Helium
+
+To set the device up using LoRa and Helium follow the steps found in this guide
+
+https://hackmd.io/@lnu-iot/HJUu_sIO9
+
+When you have your device setup in Helium you also need provide the following configuration in the `config.json` file.
+
+```js
+"dev_eui": "x",
+"app_eui": "x",
+"app_key": "x"
+```
+
+If everything is correctly configured you should now see the message "LoRa OK" after boot up and after a successfull join to a Helium gateway.
+
+As a last step you need to set up a new integration in the Helium console. Add a new "HTTP" integration and specifiy the "Endpoint URL". Next go to the "Flows" section and create link between your device and the HTTP integration you just created.
+
+
 How is the data transmitted to the internet or local server? Describe the package format. All the different steps that are needed in getting the data to your end-point. Explain both the code and choice of wireless protocols.
 
 - [ ] How often is the data sent? 
@@ -235,6 +224,20 @@ How is the data transmitted to the internet or local server? Describe the packag
 - [ ] What are the design limitations of your choices?
 
 ### Visualisation and user interface
+
+The visualization comes in the form of a audio message wit a greeting being played to the end user.
+
+.NET and c# is my preferred choice of language so it was natural to setup the infrastructure around the device using .NET. The code and setup is very simple though so I would suggest you use whatever language you feel comfortable with. The following describes the purpose and logics in each application.
+
+##### Web server hosted on Azure
+Web server hosted using Azure Web Apps. Contains one endpoint that logs any requests in the datasbase |
+
+##### MSSQL Database hosted Azure
+One table with columns for primary id, createdOn and data
+
+.NET Console application hosted on local computer
+##### One console aplication polling the database for new log rows (vibrations) and plays a sound using Microsoft.Speech
+>
 
 Describe the presentation part. How is the dashboard built? How long is the data preserved in the database?
 

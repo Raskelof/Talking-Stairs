@@ -43,22 +43,17 @@ Describe why you have chosen to build this specific device. What purpose does it
 
 ### Material
 
-Explain all material that is needed. All sensors, where you bought them and their specifications. Please also provide pictures of what you have bought and what you are using.
+I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it supports both WiFi and LoRa. A nice litle bonus on this device is the built-in OLED diplay which was very handy to display application status when not connected to the computer. 
 
-- [ ] List of material
-- [ ] What the different things (sensors, wires, controllers) do - short specifications
-- [ ] Where you bought them and how much they cost
-
-
-> Example:
->| IoT Thing | For this         |
->| --------- | ---------------- |
->| Perhaps   | a table          |
->| is a      | jolly good idea? |
->
->In this project I have chosen to work with the Pycom LoPy4 device as seen in Fig. 1, it's a neat little device programmed by MicroPython and has several bands of connectivity. The device has many digital and analog input and outputs and is well suited for an IoT project.
-
-
+| Product | Where to buy | Description | Price |
+| --------- | ---------------- | ---------------- | ---------------- |
+| NodeMCU ESP32 Heltec | (link)https://www.amazon.se/dp/B08243JHMW?ref_=pe_24982401_518009621_302_E_DDE_dt_1 | Microcontroller supporting WiFi and Lora. Built in OLED display. | 350 kr |
+| Vibration sensor high sensitivity | (link)https://www.electrokit.com/produkt/vibrationssensor-hog-kanslighet/ | Measures vibration through digital output | 42 kr |
+| Jumper wires male-male | (link)https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hane-hane/ | Wires to connect the circuits | 49 kr |
+| Jumper wires female-male | (link)https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hona-hane/ | Wires to connect the circuits | 49 kr |
+| USB to Micro USB cable | (link)https://www.kjell.com/se/produkter/kablar-kontakter/usb-kablar/linocell-micro-usb-kabel-svart-05-m-p93424?gclid=Cj0KCQiAsdKbBhDHARIsANJ6-jdFMu6K6bP9FJbrX_VwUeSgRLyFK9sPdiU4-TL19HrHKeCEr88ER2IaAqSyEALw_wcB&gclsrc=aw.ds | Cable to program the device | 110 kr |
+| Battery | (link)https://www.kjell.com/se/produkter/el-verktyg/laddare/mobilladdare/powerbank/linocell-powerbank-10000-mah-p89256 | Power supply | 199 kr |
+| Breadboard | (link)https://sizable.se/P.TVY7M/Kopplingsdack-med-830-punkter | Breadbord to connect device and sensor during development | 59 kr |
 
 ### Environment setup
 
@@ -169,7 +164,7 @@ vib.listen(on_vibration_detected, on_pin_read_OK)
 
 
 #### Supporting both WiFi and LoRA
-My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signaling between my home and public TTN gatways and Helium gateways was too unreliable so I ended up adding a configurable fallback to use WiFi instead. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everything connects well.
+My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signaling between my home and public TTN gatways and Helium gateways was too weak/unreliable so I ended up adding a configurable fallback to use WiFi instead. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everything connects well.
 
 The choice of using LoRa as an optional communication method was simply based on my interest of learning more about this protocol. For my use case (installation indoors) it's not very reliable and I would recommend using WiFi instead if it's feasible. WiFI would also be without latency if you have the requirement to get the notifications in real time or close to real time. On the other hand if your enviroment is outdoors with good connectivity LoRa could be the preferred choice.
 
@@ -234,7 +229,7 @@ Web server hosted using Azure Web Apps. Contains one endpoint that logs any requ
 MSSQL is the Microsoft relational database. This installation is a very primitive setup with one table (stairwayVibrations) with columns for primary id, createdOn and data. I choose this database only by personal convenience. Data will be logged to the database whenever a vibration event is triggered from the device.
 
 #### .NET Console application hosted on local computer
-One console aplication polling the database for new log rows (stairwayVibrations) and plays a sound using Microsoft.Speech. This console application can be run without installation on any Windows computer. In my setup I connected the computer to a Bluetooth speaker to get a better sound experience when receiving the greeting.
+One console application polling the database for new log rows (stairwayVibrations) and plays a sound using Microsoft.Speech. This console application can be run without installation on any Windows computer. In my setup I connected the computer to a Bluetooth speaker to get a better sound experience when receiving the greeting.
 
 ### Finalizing the design
 

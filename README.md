@@ -1,17 +1,17 @@
 # The Talking Stairway 
-## IoT examination project at LNU - Applied Internet of Things
+## Tutorial on how to detect vibrations from a stairway and trigger notifications over LoRa/WiFi
+> IoT examination project at LNU - Applied Internet of Things
 
 ###### tags: `IoT` `examination` `LNU` `Heltec` `ESP32` `LoRa` `Detect vibrations`
+
+Author: Rikard Askelöf
+
 ---
 **Table of Contents**
 
 
 [TOC]
 
-
-## Tutorial on how to detect vibrations from a stairway and trigger notifications over LoRa/WiFi
-
-Author: Rikard Askelöf
 
 This tutorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.
 

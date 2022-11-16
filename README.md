@@ -46,7 +46,7 @@ Describe why you have chosen to build this specific device. What purpose does it
 I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it supports both WiFi and LoRa. A nice litle bonus on this device is the built-in OLED diplay which was very handy to display application status when not connected to the computer. 
 
 | Product | Where to buy | Description | Price |
-| --------- | ---------------- | ---------------- | ---------------- |
+| --------- | ---------------- | ---------------- | ----------------: |
 | NodeMCU ESP32 Heltec | [link](https://www.amazon.se/dp/B08243JHMW?ref_=pe_24982401_518009621_302_E_DDE_dt_1) | Microcontroller supporting WiFi and Lora. Built in OLED display. | 350kr |
 | Vibration sensor high sensitivity | [link](https://www.electrokit.com/produkt/vibrationssensor-hog-kanslighet/) | Measures vibration through digital output | 42kr |
 | Jumper wires male-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hane-hane/) | Wires to connect the circuits | 49kr |
@@ -109,9 +109,9 @@ The cost for using Helium could be free or at least very low depending on your u
 
 ### The code
 
-Import core functions of your code here, and don't forget to explain what you have done. Do not put too much code here, focus on the core functionalities. Have you done a specific function that does a calculation, or are you using clever function for sending data on two networks? Or, are you checking if the value is reasonable etc. Explain what you have done, including the setup of the network, wireless, libraries and all that is needed to understand.
-
 One central file is the `config.json` file. Besides configuring the communication method (WiFi or LoRa) mentioned above you can also set the `sequence_time_ms`. This value controlls how often the device should send vibrations at a maximum. Default is set to 2000 ms which means the device will suppress any notifications 2000 ms after a vibration. This is to avoid spaming.   
+
+**Explanation of libraries in use**
 
 | Library | Explanation |
 | ------- | ----------- |

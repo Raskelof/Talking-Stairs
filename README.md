@@ -47,13 +47,13 @@ I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it su
 
 | Product | Where to buy | Description | Price |
 | --------- | ---------------- | ---------------- | ---------------- |
-| NodeMCU ESP32 Heltec | [link](https://www.amazon.se/dp/B08243JHMW?ref_=pe_24982401_518009621_302_E_DDE_dt_1) | Microcontroller supporting WiFi and Lora. Built in OLED display. | 350 kr |
-| Vibration sensor high sensitivity | [link](https://www.electrokit.com/produkt/vibrationssensor-hog-kanslighet/) | Measures vibration through digital output | 42 kr |
-| Jumper wires male-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hane-hane/) | Wires to connect the circuits | 49 kr |
-| Jumper wires female-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hona-hane/) | Wires to connect the circuits | 49 kr |
-| USB to Micro USB cable | [link](https://www.kjell.com/se/produkter/kablar-kontakter/usb-kablar/linocell-micro-usb-kabel-svart-05-m-p93424?gclid=Cj0KCQiAsdKbBhDHARIsANJ6-jdFMu6K6bP9FJbrX_VwUeSgRLyFK9sPdiU4-TL19HrHKeCEr88ER2IaAqSyEALw_wcB&gclsrc=aw.ds) | Cable to program the device | 110 kr |
-| Battery | [link](https://www.kjell.com/se/produkter/el-verktyg/laddare/mobilladdare/powerbank/linocell-powerbank-10000-mah-p89256) | Power supply | 199 kr |
-| Breadboard | [link](https://sizable.se/P.TVY7M/Kopplingsdack-med-830-punkter) | Breadbord to connect device and sensor during development | 59 kr |
+| NodeMCU ESP32 Heltec | [link](https://www.amazon.se/dp/B08243JHMW?ref_=pe_24982401_518009621_302_E_DDE_dt_1) | Microcontroller supporting WiFi and Lora. Built in OLED display. | 350kr |
+| Vibration sensor high sensitivity | [link](https://www.electrokit.com/produkt/vibrationssensor-hog-kanslighet/) | Measures vibration through digital output | 42kr |
+| Jumper wires male-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hane-hane/) | Wires to connect the circuits | 49kr |
+| Jumper wires female-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hona-hane/) | Wires to connect the circuits | 49kr |
+| USB to Micro USB cable | [link](https://www.kjell.com/se/produkter/kablar-kontakter/usb-kablar/linocell-micro-usb-kabel-svart-05-m-p93424?gclid=Cj0KCQiAsdKbBhDHARIsANJ6-jdFMu6K6bP9FJbrX_VwUeSgRLyFK9sPdiU4-TL19HrHKeCEr88ER2IaAqSyEALw_wcB&gclsrc=aw.ds) | Cable to program the device | 110kr |
+| Battery | [link](https://www.kjell.com/se/produkter/el-verktyg/laddare/mobilladdare/powerbank/linocell-powerbank-10000-mah-p89256) | Power supply | 199kr |
+| Breadboard | [link](https://sizable.se/P.TVY7M/Kopplingsdack-med-830-punkter) | Breadbord to connect device and sensor during development | 59kr |
 
 ### Environment setup
 
@@ -100,7 +100,7 @@ To get the physical setup in place we need to connect our vibration sensor and L
 
 ### Platforms and infrastructure
 
-As the device supports wireless communication using both WiFi and LoRA there are two ways to connect the device to the internet. Both the database and the web server is hosted on the **Azure** Platform so if you use WiFi these are te services required to be setup. If you instead want to use LoRa you also need to setup a **Helium** account and configure your device and integration. Read more about the platform setup under "The physical network layer".
+As the device supports wireless communication using both WiFi and LoRA there are two ways to connect the device to the internet. Both the database and the web server is hosted on the **Azure** Platform so if you use WiFi these are the services required to be setup. If you instead want to use LoRa you also need to setup a **Helium** account and configure your device and integration. Read more about the platform setup under "The physical network layer".
 
 #### Cost
 
@@ -111,6 +111,20 @@ The cost for using Helium could be free or at least very low depending on your u
 
 Import core functions of your code here, and don't forget to explain what you have done. Do not put too much code here, focus on the core functionalities. Have you done a specific function that does a calculation, or are you using clever function for sending data on two networks? Or, are you checking if the value is reasonable etc. Explain what you have done, including the setup of the network, wireless, libraries and all that is needed to understand.
 
+One central file is the `config.json` file. Besides configuring the communication method (WiFi or LoRa) mentioned above you can also set the `sequence_time_ms`. This value controlls how often the device should send vibrations at a maximum. Default is set to 2000 ms which means the device will suppress any notifications 2000 ms after a vibration. This is to avoid spaming.   
+
+| Library | Explanation |
+| ------- | ----------- |
+| **lora_sender.py** | Utility class to connect to WiFi and send a GET request |
+| **screen.py** | Utility class to display messages on the built-in oled display |
+| **settings.py** | Class to read and expose properties from the config.json file |
+| **ssd1306.py** | Open source library to use the oled display |
+| **urequests.py** | Open source utility library to make request over HTTP |
+| **vibration_detection.py** | Initiate sensor and listen to vibrations |
+| **wifi_sender.py** | Utility class to connect to LoRa and send data |
+
+
+The central part of the main.py file is the callback method on_vibration_detected where the actual incoming vibrations are being handled and processed. 
 
 ```python=
 from screen import Screen

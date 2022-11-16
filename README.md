@@ -47,13 +47,13 @@ I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it su
 
 | Product | Where to buy | Description | Price |
 | --------- | ---------------- | ---------------- | ---------------- |
-| NodeMCU ESP32 Heltec | (link)https://www.amazon.se/dp/B08243JHMW?ref_=pe_24982401_518009621_302_E_DDE_dt_1 | Microcontroller supporting WiFi and Lora. Built in OLED display. | 350 kr |
-| Vibration sensor high sensitivity | (link)https://www.electrokit.com/produkt/vibrationssensor-hog-kanslighet/ | Measures vibration through digital output | 42 kr |
-| Jumper wires male-male | (link)https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hane-hane/ | Wires to connect the circuits | 49 kr |
-| Jumper wires female-male | (link)https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hona-hane/ | Wires to connect the circuits | 49 kr |
-| USB to Micro USB cable | (link)https://www.kjell.com/se/produkter/kablar-kontakter/usb-kablar/linocell-micro-usb-kabel-svart-05-m-p93424?gclid=Cj0KCQiAsdKbBhDHARIsANJ6-jdFMu6K6bP9FJbrX_VwUeSgRLyFK9sPdiU4-TL19HrHKeCEr88ER2IaAqSyEALw_wcB&gclsrc=aw.ds | Cable to program the device | 110 kr |
-| Battery | (link)https://www.kjell.com/se/produkter/el-verktyg/laddare/mobilladdare/powerbank/linocell-powerbank-10000-mah-p89256 | Power supply | 199 kr |
-| Breadboard | (link)https://sizable.se/P.TVY7M/Kopplingsdack-med-830-punkter | Breadbord to connect device and sensor during development | 59 kr |
+| NodeMCU ESP32 Heltec | [link](https://www.amazon.se/dp/B08243JHMW?ref_=pe_24982401_518009621_302_E_DDE_dt_1) | Microcontroller supporting WiFi and Lora. Built in OLED display. | 350 kr |
+| Vibration sensor high sensitivity | [link](https://www.electrokit.com/produkt/vibrationssensor-hog-kanslighet/) | Measures vibration through digital output | 42 kr |
+| Jumper wires male-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hane-hane/) | Wires to connect the circuits | 49 kr |
+| Jumper wires female-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hona-hane/) | Wires to connect the circuits | 49 kr |
+| USB to Micro USB cable | [link](https://www.kjell.com/se/produkter/kablar-kontakter/usb-kablar/linocell-micro-usb-kabel-svart-05-m-p93424?gclid=Cj0KCQiAsdKbBhDHARIsANJ6-jdFMu6K6bP9FJbrX_VwUeSgRLyFK9sPdiU4-TL19HrHKeCEr88ER2IaAqSyEALw_wcB&gclsrc=aw.ds) | Cable to program the device | 110 kr |
+| Battery | [link](https://www.kjell.com/se/produkter/el-verktyg/laddare/mobilladdare/powerbank/linocell-powerbank-10000-mah-p89256) | Power supply | 199 kr |
+| Breadboard | [link](https://sizable.se/P.TVY7M/Kopplingsdack-med-830-punkter) | Breadbord to connect device and sensor during development | 59 kr |
 
 ### Environment setup
 

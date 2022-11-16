@@ -235,10 +235,46 @@ MSSQL is the Microsoft relational database. This installation is a very primitiv
 #### .NET Console application hosted on local computer
 One console application polling the database for new log rows (stairwayVibrations) and plays a sound using Microsoft.Speech. This console application can be run without installation on any Windows computer. In my setup I connected the computer to a Bluetooth speaker to get a better sound experience when receiving the greeting.
 
+The application code for this
+
+```c#
+class Program
+    {
+
+        static void Main(string[] args)
+        {
+            IDB _db = new DB();
+            SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+            synthesizer.Volume = 100;  // 0...100
+            synthesizer.Rate = -2;     // -10...10
+
+            Console.WriteLine("Start listening for vibrations");
+
+            while (true) {
+                var hasBeenUpdated = Convert.ToBoolean((int)_db.ExecScalar("sp_hasUpdate", DateTime.Now.AddHours(-1).AddSeconds(-1)));
+
+                if (hasBeenUpdated) {
+
+                    Console.WriteLine("Vibrations detetcted...");
+                    Thread.Sleep(14000);
+                    
+                    
+                    synthesizer.Speak("Good morning!");
+
+                    Thread.Sleep(1000);
+                }
+            }
+
+        }
+    }
+```
+
 ### Finalizing the design
 
 You can watch a proof of concept demo of the complete device and platform setup here:
 https://photos.app.goo.gl/m8jURnoubJgfNXZ16
 
-I'm happy with the end result of this project but I haven't reached the end goal. To get real practical use of the device I would like to identify WHO is walking down the stairway to play a personalised message instead of a general greeting. To be continued...
+I'm happy with the end result of this project but I haven't reached the end goal. To get real practical use of the device I would like to identify WHO is walking down the stairway to play a personalised message instead of a general greeting. One way to slove this would be to find a even more senesitive vibration sensor so I can detect smaller vibrations and also get the stength of the vibration. Another approach would be to use mulitple vibration sensors and attach them to different stairs on the stairway.
+
+To be continued...
 

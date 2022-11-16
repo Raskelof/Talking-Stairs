@@ -13,9 +13,9 @@
 
 Author: Rikard Askelöf
 
-This turtorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.
+This tutorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.
 
-Depending on your enviroment, use case and experience the setup process takes 10 - 30h. 
+Depending on your environment, use case and experience the setup process takes 10 - 30h. 
 
 <!---
 Give a short and brief overview of what your project is about.
@@ -31,7 +31,7 @@ What needs to be included:
 
 The purpose of the project is to detect a person walking down stairways and send a notification over WiFi/LoRa. In my specific case I used that notification to play an audio message to the person walking down to greet them with a voice saying e.g. "Good morning" or "Hello".
 
-Comming from a developer backround in system/web/app development my main goal of this project was to learn more about IoT development and specifically using communication protocols like LoRa. 
+Coming from a developer background in system/web/app development my main goal of this project was to learn more about IoT development and specifically using communication protocols like LoRa. 
 
 <!--
 Describe why you have chosen to build this specific device. What purpose does it serve? What do you want to do with the data, and what new insights do you think it will give?
@@ -43,7 +43,7 @@ Describe why you have chosen to build this specific device. What purpose does it
 
 ### Material
 
-I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it supports both WiFi and LoRa. A nice litle bonus on this device is the built-in OLED diplay which was very handy to display application status when not connected to the computer. 
+I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it supports both WiFi and LoRa. A nice little bonus on this device is the built-in OLED display which was very handy to display application status when not connected to the computer. 
 
 | Product | Where to buy | Description | Price |
 | --------- | ---------------- | ---------------- | ----------------: |
@@ -53,11 +53,11 @@ I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it su
 | Jumper wires female-male | [link](https://www.electrokit.com/produkt/labbsladd-40-pin-30cm-hona-hane/) | Wires to connect the circuits | 49kr |
 | USB to Micro USB cable | [link](https://www.kjell.com/se/produkter/kablar-kontakter/usb-kablar/linocell-micro-usb-kabel-svart-05-m-p93424?gclid=Cj0KCQiAsdKbBhDHARIsANJ6-jdFMu6K6bP9FJbrX_VwUeSgRLyFK9sPdiU4-TL19HrHKeCEr88ER2IaAqSyEALw_wcB&gclsrc=aw.ds) | Cable to program the device | 110kr |
 | Battery | [link](https://www.kjell.com/se/produkter/el-verktyg/laddare/mobilladdare/powerbank/linocell-powerbank-10000-mah-p89256) | Power supply | 199kr |
-| Breadboard | [link](https://sizable.se/P.TVY7M/Kopplingsdack-med-830-punkter) | Breadbord to connect device and sensor during development | 59kr |
+| Breadboard | [link](https://sizable.se/P.TVY7M/Kopplingsdack-med-830-punkter) | Breadboard to connect device and sensor during development | 59kr |
 
 ### Environment setup
 
-This project was programmed in MicroPython and to get you started you will need to setup the enviroment.
+This project was programmed in MicroPython and to get you started you will need to setup the environment.
 
 ##### 1. Install drivers
 
@@ -74,7 +74,7 @@ This project was programmed in MicroPython and to get you started you will need 
 
 ##### 3. Install IDE on computer
 
- + For this project I ended up using Thonny for development which is lightweight IDE for micro controllers but I would suggest you try using either VS Code or Atom with the PyMakr plugin installed. I had some stability issues uploading new code when I used VS Code with PyMakr but it's definitly a more modern setup. You can download Thonny from here: https://thonny.org/
+ + For this project I ended up using Thonny for development which is lightweight IDE for micro controllers but I would suggest you try using either VS Code or Atom with the PyMakr plugin installed. I had some stability issues uploading new code when I used VS Code with PyMakr but it's definitely a more modern setup. You can download Thonny from here: https://thonny.org/
 
 ##### 4. Verify your installation
 
@@ -84,7 +84,7 @@ This project was programmed in MicroPython and to get you started you will need 
 
 ### Putting everything together
 
-To get the physical setup in place we need to connect our vibration sensor and LoRa antenna. To make things a litle bit easier I used a breadboard to connect the circuits. 
+To get the physical setup in place we need to connect our vibration sensor and LoRa antenna. To make things a little bit easier I used a breadboard to connect the circuits. 
 
 #### Steps
 
@@ -109,7 +109,7 @@ The cost for using Helium could be free or at least very low depending on your u
 
 ### The code
 
-One central file is the `config.json` file. Besides configuring the communication method (WiFi or LoRa) mentioned above you can also set the `sequence_time_ms`. This value controlls how often the device should send vibrations at a maximum. Default is set to 2000 ms which means the device will suppress any notifications 2000 ms after a vibration. This is to avoid spaming.   
+One central file is the `config.json` file. Besides configuring the communication method (WiFi or LoRa) mentioned below you can also set the `sequence_time_ms`. This value controls how often the device should send vibrations at a maximum. Default is set to 2000 ms which means the device will suppress any notifications 2000 ms after a vibration. This is to avoid spamming.   
 
 **Explanation of libraries in use**
 
@@ -124,7 +124,7 @@ One central file is the `config.json` file. Besides configuring the communicatio
 | **wifi_sender.py** | Utility class to connect to LoRa and send data |
 
 
-The central part of the main.py file is the callback method on_vibration_detected where the actual incoming vibrations are being handled and processed. 
+The central part of the main.py file is the callback method `on_vibration_detected` where the actual incoming vibrations are being handled and processed. 
 
 ```python=
 from screen import Screen
@@ -178,15 +178,15 @@ vib.listen(on_vibration_detected, on_pin_read_OK)
 
 
 #### Supporting both WiFi and LoRA
-My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signaling between my home and public TTN gatways and Helium gateways was too weak/unreliable so I ended up adding a configurable fallback to use WiFi instead. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everything connects well.
+My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signalling between my home and public TTN gateways and Helium gateways was too weak/unreliable so I ended up adding a configurable fallback to use WiFi instead. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everything connects well.
 
-The choice of using LoRa as an optional communication method was simply based on my interest of learning more about this protocol. For my use case (installation indoors) it's not very reliable and I would recommend using WiFi instead if it's feasible. WiFI would also be without latency if you have the requirement to get the notifications in real time or close to real time. On the other hand if your enviroment is outdoors with good connectivity LoRa could be the preferred choice.
+The choice of using LoRa as an optional communication method was simply based on my interest of learning more about this protocol. For my use case (installation indoors) it's not very reliable and I would recommend using WiFi instead if it's feasible. WiFI would also be without latency if you have the requirement to get the notifications in real time or close to real time. On the other hand if your environment is outdoors with good connectivity, LoRa could be the preferred choice.
 
 
 ![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/IoT-stairs_connectivity.png?raw=true)
 
 
-The picture above descibes how detected vibrations are sent out from the device, gets logged in the database and finally geeting pulled from a local application to play an audio message. No matter if you choose WiFi or LoRa, the message sent will go through the same HTTP endpoint.
+The picture above describes how detected vibrations are sent out from the device, gets logged in the database and finally greeting pulled from a local application to play an audio message. No matter if you choose WiFi or LoRa, the message sent will go through the same HTTP endpoint.
 
 To configure WiFi or LoRa you need to set the following variable in the `config.json`
 
@@ -196,7 +196,7 @@ To configure WiFi or LoRa you need to set the following variable in the `config.
 
 #### Setting up communication using WiFi
 
-Besides configuring the corrrect SSD and password you also need to provide the endpoint URL to which all notifications will be sent using HTTP GET.
+Besides configuring the correct SSD and password you also need to provide the endpoint URL to which all notifications will be sent using HTTP GET.
 
 ```js
 "notification_endpoint": "http://mydomain.com/myendpoint"
@@ -208,7 +208,7 @@ To set the device up using LoRa and Helium follow the steps found in this guide
 
 https://hackmd.io/@lnu-iot/HJUu_sIO9
 
-When you have your device setup in Helium you also need provide the following configuration in the `config.json` file.
+When you have your device setup in Helium you also need to provide the following configuration in the `config.json` file.
 
 ```js
 "dev_eui": "x",
@@ -216,9 +216,9 @@ When you have your device setup in Helium you also need provide the following co
 "app_key": "x"
 ```
 
-If everything is correctly configured you should now see the message "LoRa OK" after boot up and after a successfull join to a Helium gateway.
+If everything is correctly configured you should now see the message "LoRa OK" after boot up and after a successful  join to a Helium gateway.
 
-As a last step you need to set up a new integration in the Helium console. Add a new "HTTP" integration and specifiy the "Endpoint URL". Next go to the "Flows" section and create link between your device and the HTTP integration you just created.
+As a last step you need to set up a new integration in the Helium console. Add a new "HTTP" integration and specify  the "Endpoint URL". Next go to the "Flows" section and create a link between your device and the HTTP integration you just created.
 
 
 How is the data transmitted to the internet or local server? Describe the package format. All the different steps that are needed in getting the data to your end-point. Explain both the code and choice of wireless protocols.
@@ -232,12 +232,12 @@ How is the data transmitted to the internet or local server? Describe the packag
 
 ### Visualisation and user interface
 
-The visualization comes in the form of a audio message with a text-to-speech greeting being played to the end user.
+The visualisation comes in the form of an audio message with a text-to-speech greeting being played to the end user.
 
-.NET and c# is my preferred choice of language so it was natural to setup the infrastructure around the device using .NET. The code and setup is very simple though so I would suggest you use whatever language you feel comfortable with. The following describes the purpose and logics in each application.
+.NET and c# is my preferred choice of language so it was natural to set up the infrastructure around the device using .NET. The code and setup is very simple though so I would suggest you use whatever language you feel comfortable with. The following describes the purpose and logic in each application.
 
 #### Web server hosted on Azure
-Web server hosted using Azure Web Apps. Contains one endpoint that logs any requests in the datasbase described below.
+Web server hosted using Azure Web Apps. Contains one endpoint that logs any requests in the database described below.
 
 #### MSSQL Database hosted Azure
 MSSQL is the Microsoft relational database. This installation is a very primitive setup with one table (stairwayVibrations) with columns for primary id, createdOn and data. I choose this database only by personal convenience. Data will be logged to the database whenever a vibration event is triggered from the device.
@@ -250,5 +250,5 @@ One console application polling the database for new log rows (stairwayVibration
 You can watch a proof of concept demo of the complete device and platform setup here:
 https://photos.app.goo.gl/m8jURnoubJgfNXZ16
 
-I'm happy with the end result of this project but I haven't reached the end goal. To get real practical use of the device I would like to identify WHO is walking down the stairway to play a personalized message instead of a general greeting. To be continued...
+I'm happy with the end result of this project but I haven't reached the end goal. To get real practical use of the device I would like to identify WHO is walking down the stairway to play a personalised message instead of a general greeting. To be continued...
 

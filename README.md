@@ -220,16 +220,6 @@ If everything is correctly configured you should now see the message "LoRa OK" a
 
 As a last step you need to set up a new integration in the Helium console. Add a new "HTTP" integration and specify  the "Endpoint URL". Next go to the "Flows" section and create a link between your device and the HTTP integration you just created.
 
-
-How is the data transmitted to the internet or local server? Describe the package format. All the different steps that are needed in getting the data to your end-point. Explain both the code and choice of wireless protocols.
-
-- [ ] How often is the data sent? 
-- [ ] Which wireless protocols did you use (WiFi, LoRa, etc ...)?
-- [ ] Which transport protocols were used (MQTT, webhook, etc ...)
-- [ ] Elaborate on the design choices regarding data transmission and wireless protocols. That is how your choices affect the device range and battery consumption.
-- [ ] What alternatives did you evaluate?
-- [ ] What are the design limitations of your choices?
-
 ### Visualisation and user interface
 
 The visualisation comes in the form of an audio message with a text-to-speech greeting being played to the end user.

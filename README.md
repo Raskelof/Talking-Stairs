@@ -1,4 +1,4 @@
-# Talking stairs 
+# The Talking Stairway 
 ## IoT examination project at LNU - Applied Internet of Things
 
 ###### tags: `IoT` `examination` `LNU` `Heltec` `ESP32` `LoRa` `Detect vibrations`
@@ -43,7 +43,7 @@ Describe why you have chosen to build this specific device. What purpose does it
 
 ### Material
 
-I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it supports both WiFi and LoRa. A nice little bonus on this device is the built-in OLED display which was very handy to display application status when not connected to the computer. 
+I have chosen to build my device using the microcontroller NodeMCU ESP32 Heltec mainly because it supports both WiFi and LoRa. A nice little bonus on this device is the built-in OLED display which was very handy to display application status when not connected to the computer. 
 
 | Product | Where to buy | Description | Price |
 | --------- | ---------------- | ---------------- | ----------------: |
@@ -57,7 +57,7 @@ I have chosen to build my device using NodeMCU ESP32 Heltec mainly because it su
 
 ### Environment setup
 
-This project was programmed in MicroPython and to get you started you will need to setup the environment.
+This project was programmed in MicroPython and to get you started you will need to set up the environment.
 
 ##### 1. Install drivers
 
@@ -100,7 +100,7 @@ To get the physical setup in place we need to connect our vibration sensor and L
 
 ### Platforms and infrastructure
 
-As the device supports wireless communication using both WiFi and LoRA there are two ways to connect the device to the internet. Both the database and the web server is hosted on the **Azure** Platform so if you use WiFi these are the services required to be setup. If you instead want to use LoRa you also need to setup a **Helium** account and configure your device and integration. Read more about the platform setup under "The physical network layer".
+As the device supports wireless communication using both WiFi and LoRA there are two ways to connect the device to the internet. Both the database and the web server is hosted on the **Azure** Platform so if you use WiFi these are the services required to be set up. If you instead want to use LoRa you also need to set up a **Helium** account and configure your device and integration. Read more about the platform setup under "The physical network layer".
 
 #### Cost
 
@@ -208,7 +208,7 @@ To set the device up using LoRa and Helium follow the steps found in this guide
 
 https://hackmd.io/@lnu-iot/HJUu_sIO9
 
-When you have your device setup in Helium you also need to provide the following configuration in the `config.json` file.
+When you have your device set up in Helium you also need to provide the following configuration in the `config.json` file.
 
 ```js
 "dev_eui": "x",

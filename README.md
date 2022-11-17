@@ -194,7 +194,7 @@ The device is not very optimized for low battery consumption. As my final goal w
 ![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/IoT-stairs_connectivity.png?raw=true)
 
 
-The picture above describes how detected vibrations are sent out from the device, gets logged in the database and finally greeting pulled from a local application to play an audio message. No matter if you choose WiFi or LoRa, the message sent will go through the same HTTP endpoint.
+The picture above describes how detected vibrations are sent out from the device, gets logged in the database and finally getting pulled from a local application to play an audio message. No matter if you choose WiFi or LoRa, the message sent will go through the same HTTP endpoint.
 
 To configure WiFi or LoRa you need to set the following variable in the `config.json` file
 

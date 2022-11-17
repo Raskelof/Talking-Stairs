@@ -37,7 +37,7 @@ What needs to be included:
 
 ### Objectives
 
-The purpose of the project is to detect a person walking down stairways and send a notification over WiFi/LoRa. In my specific case I used that notification to play an audio message to the person walking down to greet them with a voice saying e.g. "Good morning" or "Hello".
+The purpose of the project is to detect a person walking down a stairway and send a notification over WiFi/LoRa. In my specific case I used that notification to play an text-to-speech audio message to the person walking down to greet them with a voice saying e.g. "Good morning" or "Hello".
 
 Coming from a developer background in system/web/app development my main goal of this project was to learn more about IoT development and specifically using communication technologies like LoRa. 
 
@@ -132,7 +132,7 @@ One central file is the `config.json` file. Besides configuring the communicatio
 | **wifi_sender.py** | Utility class to connect to LoRa and send data |
 
 
-The central part of the main.py file is the callback method `on_vibration_detected` where the actual incoming vibrations are being handled and processed. There's also another callback method defined `on_pin_read_OK` which makes sure reading from pin (P10) is OK. 
+The central part of the main.py file is the callback method **`on_vibration_detected`** where the actual incoming vibrations are being handled and processed. There's also another callback method defined **`on_pin_read_OK`** which makes sure reading from pin (P10) is OK. 
 
 ```python=
 from screen import Screen
@@ -155,7 +155,7 @@ else:
     loraSender = LoRaSender(config.dev_eui ,config.app_eui ,config.app_key)
     s.display('LoRa OK')
 
-def **on_pin_read_OK()**:
+def on_pin_read_OK():
     s.clear();
     s.display('Sensor OK')
 
@@ -187,6 +187,8 @@ vib.listen(on_vibration_detected, on_pin_read_OK)
 My first plan was to use LoRa as the sole wireless protocol to send notifications. As it turned out the signalling between my home and public TTN gateways and Helium gateways was too weak/unreliable so I ended up adding a configurable fallback to use WiFi instead. This can be easily configured in the configuration file described below. To make testing more convenient I've added confirmation messages to the built in OLED display which will display **"LoRa OK"** or **"WiFi OK"** if everything connects well.
 
 The choice of using LoRa as an optional communication method was simply based on my interest of learning more about this protocol. For my use case (installation indoors) it's not very reliable and I would recommend using WiFi instead if it's feasible. WiFI would also be without latency if you have the requirement to get the notifications in real time or close to real time. On the other hand if your environment is outdoors with good connectivity, LoRa could be the preferred choice.
+
+The device is not very optimized for low battery consumption. As my final goal was to detect vibrations in the morning to play a morning greeting message it would be wise to "deep sleep" the device throughout the day and wake it up a few hours during the morning hours.
 
 
 ![IoT circuits](https://github.com/Raskelof/Talking-Stairs/blob/main/assets/IoT-stairs_connectivity.png?raw=true)

@@ -5,7 +5,9 @@
 ###### tags: `IoT` `examination` `LNU` `Heltec` `ESP32` `LoRa` `Detect vibrations`
 
 Author: Rikard Askelöf
+
 ---
+
 This tutorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.
 
 Depending on your environment, use case and experience the setup process takes 10 - 40h. 

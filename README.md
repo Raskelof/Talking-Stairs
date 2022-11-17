@@ -9,15 +9,15 @@ Author: Rikard Askelöf
 ---
 **Table of Contents**
 
-[Objectives](#Objectives)
-[Material](#Material)
-[Environment setup](#Environment-setup)
-[Putting everything together](#Putting-everything-together)
-[Platforms and infrastructure](#Platforms-and-infrastructure)
-[The code](#The-code)
-[The physical network layer](#The-physical-network-layer)
-[Visualisation and user interface](#Visualisation-and-user-interface)
-[Finalizing the design](#Finalizing-the-design)
+1. [Objectives](#Objectives)
+2. [Material](#Material)
+3. [Environment setup](#Environment-setup)
+4. [Putting everything together](#Putting-everything-together)
+5. [Platforms and infrastructure](#Platforms-and-infrastructure)
+6. [The code](#The-code)
+7. [The physical network layer](#The-physical-network-layer)
+8. [Visualisation and user interface](#Visualisation-and-user-interface)
+9. [Finalizing the design](#Finalizing-the-design)
 
 
 This tutorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.

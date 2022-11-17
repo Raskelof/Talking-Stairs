@@ -1,0 +1,14 @@
+{
+    "useWiFi": true,
+    "wifi": {
+        "SSD": "DeInternetz",
+        "password": "askelofski"
+    },
+    "lora": {
+        "dev_eui": "6081F93EFDF9C9A4",
+        "app_eui": "6081F9657825DB33",
+        "app_key": "D2FEF703E75D12B1FA67BE99558E8BF3"
+    },
+    "notification_endpoint": "http://vibrating-stairs.azurewebsites.net/anonymous"
+    "sequence_time_ms": 2000
+}

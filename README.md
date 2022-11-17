@@ -5,8 +5,11 @@
 ###### tags: `IoT` `examination` `LNU` `Heltec` `ESP32` `LoRa` `Detect vibrations`
 
 Author: Rikard Askelöf
-
 ---
+This tutorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.
+
+Depending on your environment, use case and experience the setup process takes 10 - 40h. 
+
 **Table of Contents**
 
 1. [Objectives](#Objectives)
@@ -18,11 +21,6 @@ Author: Rikard Askelöf
 7. [The physical network layer](#The-physical-network-layer)
 8. [Visualisation and user interface](#Visualisation-and-user-interface)
 9. [Finalizing the design](#Finalizing-the-design)
-
-
-This tutorial describes the steps needed to build your own vibration detection device to trigger events over LoRa or WiFi. My personal aim was to install this setup in my stairway to detect a person walking in the stairway but the use case could be anything where you have a need to detect vibrations and act on them.
-
-Depending on your environment, use case and experience the setup process takes 10 - 40h. 
 
 <!---
 Give a short and brief overview of what your project is about.
@@ -131,7 +129,7 @@ One central file is the `config.json` file. Besides configuring the communicatio
 | **wifi_sender.py** | Utility class to connect to LoRa and send data |
 
 
-The central part of the main.py file is the callback method `on_vibration_detected` where the actual incoming vibrations are being handled and processed. 
+The central part of the main.py file is the callback method `on_vibration_detected` where the actual incoming vibrations are being handled and processed. There's also another callback method defined `on_pin_read_OK` which makes sure reading from pin (P10) is OK. 
 
 ```python=
 from screen import Screen

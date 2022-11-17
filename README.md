@@ -135,12 +135,6 @@ One central file is the `config.json` file. Besides configuring the communicatio
 The central part of the main.py file is the callback method **`on_vibration_detected`** where the actual incoming vibrations are being handled and processed. There's also another callback method defined **`on_pin_read_OK`** which makes sure reading from pin (P10) is OK. 
 
 ```python=
-from screen import Screen
-from vibration_detection import VibrationDetection
-from lora_sender import LoRaSender
-from wifi_sender import WiFiSender
-from settings import Settings
-
 config = Settings()
 
 s = Screen()
@@ -177,7 +171,6 @@ def on_vibration_detected(ms_since_last_vibration):
 
 vib = VibrationDetection()
 vib.listen(on_vibration_detected, on_pin_read_OK)
-
 ```
 
 ### The physical network layer

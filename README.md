@@ -23,6 +23,7 @@ Depending on your environment, use case and experience the setup process takes 1
 7. [The physical network layer](#The-physical-network-layer)
 8. [Visualisation and user interface](#Visualisation-and-user-interface)
 9. [Finalizing the design](#Finalizing-the-design)
+9. [References](#References)
 
 <!---
 Give a short and brief overview of what your project is about.
@@ -286,3 +287,13 @@ I'm happy with the end result of this project but I haven't reached the end goal
 
 To be continued...
 
+### References
+
+https://i.imgur.com/e1k5mgq.png
+https://hackmd.io/@lnu-iot/By5ZUqvOq
+https://hackmd.io/@lnu-iot/S1gQlj8_q
+https://hackmd.io/@lnu-iot/SyZ2diUOq
+https://hackmd.io/@lnu-iot/HJUu_sIO9
+https://docs.micropython.org/en/latest/esp32/quickref.html
+https://docs.pycom.io/
+https://escapequotes.net/heltec-esp32-display-lcd-text-micropython/

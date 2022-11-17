@@ -131,7 +131,6 @@ One central file is the `config.json` file. Besides configuring the communicatio
 | **vibration_detection.py** | Initiate sensor and listen to vibrations |
 | **wifi_sender.py** | Utility class to connect to LoRa and send data |
 
-
 The central part of the main.py file is the callback method ==on_vibration_detected== where the actual incoming vibrations are being handled and processed. There's also another callback method defined ==on_pin_read_OK== which makes sure reading from pin (P10) is OK. 
 
 ```python=
